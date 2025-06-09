@@ -1,5 +1,4 @@
-// SHADOWHACKER-GOD: Protocol Initiation - Cognitive Behavioral UI Optimization
-// Redefining Intelligence in Code - Version 2.0
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const detailProductImage = document.getElementById('detailProductImage');
     const detailProductName = document.getElementById('detailProductName');
     const detailOldPrice = document.getElementById('detailOldPrice');
-    const detailNewPrice = document.getElementById('detailNewPrice');
+    const detailNewPrice = document = document.getElementById('detailNewPrice');
     const detailProductDescription = document.getElementById('detailProductDescription');
     const detailProductWeight = document.getElementById('detailProductWeight');
     const detailProductSizes = document.getElementById('detailProductSizes');
@@ -199,14 +198,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 : (product.stock === 0 ? `<p class="stock-status text-danger mt-2">نفد المخزون</p>` : '');
 
             const productCard = `
-                <div class="col" id="product-card-${product.id}"> <div class="card h-100 product-card">
+                <div class="col">
+                    <div class="card h-100 product-card" id="product-card-${product.id}">
                         <img src="${product.image}" class="card-img-top" alt="${product.name}">
                         <div class="card-body">
                             <h5 class="card-title">${product.name}</h5>
                             ${generateStars(product.rating)}
                             <p class="card-text old-price"><del>${product.oldPrice.toFixed(2)}</del> جنيه</p>
                             <p class="card-text new-price">${product.newPrice.toFixed(2)} جنيه</p>
-                            ${stockStatusHtml} <button class="btn btn-primary product-details-btn" data-product-id="${product.id}">تفاصيل المنتج</button>
+                            ${stockStatusHtml}
+                            <button class="btn btn-primary product-details-btn" data-product-id="${product.id}">تفاصيل المنتج</button>
                         </div>
                     </div>
                 </div>
@@ -365,72 +366,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // window.location.reload();
     });
 
-    // --- Testimonials Data ---
-    const testimonials = [
-        {
-            id: 1,
-            text: 'تجربة تسوق رائعة! المنتجات ذات جودة عالية والتوصيل سريع جداً. أنصح به بشدة!',
-            author: 'أحمد سعيد'
-        },
-        {
-            id: 2,
-            text: 'أفضل متجر للملابس عبر الإنترنت. تشكيلة متنوعة وأسعار منافسة. سأعاود الشراء بالتأكيد.',
-            author: 'فاطمة الزهراء'
-        },
-        {
-            id: 3,
-            text: 'خدمة عملاء ممتازة واستجابة سريعة. الفستان وصلني بحالة ممتازة وكان كما في الصورة تماماً.',
-            author: 'ليلى محمود'
-        },
-        
-    ];
 
-    // Initialize Swiper for Testimonials
-    const testimonialsSliderContainer = document.querySelector('.testimonials-slider .swiper-wrapper');
-
-    testimonials.forEach(testimonial => {
-        const slide = document.createElement('div');
-        slide.classList.add('swiper-slide');
-        slide.innerHTML = `
-            <div class="testimonial-card">
-                <p class="testimonial-text">"${testimonial.text}"</p>
-                <p class="testimonial-author">- ${testimonial.author}</p>
-            </div>
-        `;
-        testimonialsSliderContainer.appendChild(slide);
-    });
-
-    // Ensure Swiper is loaded before initializing
-    if (typeof Swiper !== 'undefined') {
-        new Swiper('.testimonials-slider', {
-            loop: true,
-            autoplay: {
-                delay: 5000, // 5 seconds
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            slidesPerView: 1, // Default for mobile
-            spaceBetween: 30,
-            breakpoints: {
-                768: {
-                    slidesPerView: 2, // 2 slides on tablet
-                },
-                992: {
-                    slidesPerView: 3, // 3 slides on desktop
-                }
-            }
-        });
-    } else {
-        console.error("Swiper library not loaded. Please ensure the Swiper CDN is included in your HTML.");
-    }
 
     // --- SHADOWHACKER-GOD: Cognitive Behavioral UI Optimization System ---
     const userBehavior = {
         mouseMovements: [], // {x, y, ts, elId}
-        clicks: [],         // {x, y, ts, elId, tag}
+        clicks: [],          // {x, y, ts, elId, tag}
         scrollDepth: [],    // {ts, pct, sectionId}
         keyPresses: [],     // {ts, key, inputId}
         timeOnElements: {}, // {elementId: totalTimeMs}
@@ -513,17 +454,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const productInterest = inferredState.interest[productId] || 0;
                 const stockElement = card.querySelector('.stock-status');
 
-                // Apply dynamic glow based on interest
+                // Apply dynamic glowing-card class based on interest for low stock items
                 if (productInterest > 0.6 && stockElement && stockElement.textContent.includes('قطع فقط')) {
-                    card.classList.add('glowing-card');
+                    card.classList.add('glowing-card-stock'); // Added new class for low stock glow
                     stockElement.style.fontWeight = 'bold';
                     stockElement.style.animation = 'pulse 1s infinite alternate';
                 } else {
-                    card.classList.remove('glowing-card');
+                    card.classList.remove('glowing-card-stock');
                     if (stockElement) {
                         stockElement.style.animation = 'none';
                     }
                 }
+                // Removed the generic glowing-card class from here as it's now specific to hover
             });
 
             // 2. Dynamic Price/Offer Display (Price Sensitivity)
