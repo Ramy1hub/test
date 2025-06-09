@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكوثر</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/ico" href="https://l.top4top.io/p_3441n3mw61.png" />
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top custom-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">الكوثر</a>
+            <div class="d-flex align-items-center order-md-2 order-1">
+                <button class="btn btn-dark-mode ms-2" id="darkModeToggle" aria-label="تبديل الوضع الليلي">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <form class="d-flex mx-auto search-bar-container">
+                    <input class="form-control me-2 search-input" type="search" placeholder="ابحث عن منتجات..." aria-label="Search">
+                    <button class="btn btn-outline-success search-button" type="submit" aria-label="زر البحث"><i class="fas fa-search"></i></button>
+                </form>
+                <button class="btn btn-cart ms-2 me-md-auto" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="سلة التسوق">
+                    <i class="fas fa-shopping-cart"></i> <span class="badge bg-danger rounded-pill cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <a href="https://wa.me/201234567890" target="_blank" class="whatsapp-float" aria-label="تواصل عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <main class="container-fluid mt-5 pt-5">
+
+        <section class="hero-slider mb-5">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/slider-image.jpg" class="d-block w-100" alt="أحدث تشكيلة صيف 2024">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>أحدث تشكيلة لصيف 2024!</h5>
+                            <p>اكتشف أناقة لا مثيل لها.</p>
+                        </div>
+                    </div>
+                    </div>
+                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev" aria-label="السابق">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">السابق</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next" aria-label="التالي">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">التالي</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="products-section mb-5">
+            <h2 class="text-center mb-4 products-heading">منتجاتنا المميزة</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="productsContainer">
+                </div>
+        </section>
+
+       
+
+    </main>
+
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">سلة التسوق</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fas fa-shopping-basket fa-3x mb-3"></i>
+                    <p>سلتك فارغة حالياً.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productDetailsModal" tabindex="-1" aria-labelledby="productDetailsModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productDetailsModalLabel">تفاصيل المنتج</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                </div>
+                <div class="modal-body row">
+                    <div class="col-md-6 text-center">
+                        <img src="images/product-placeholder.jpg" class="img-fluid product-detail-image" alt="صورة المنتج" id="detailProductImage">
+                    </div>
+                    <div class="col-md-6 product-detail-info">
+                        <h4 id="detailProductName">اسم المنتج هنا</h4>
+                        <div class="product-rating-stars mb-2" id="detailProductRating">
+                            </div>
+                        <p class="old-price" id="detailOldPrice">السعر القديم: <del>XXX.XX</del> جنيه</p>
+                        <p class="new-price" id="detailNewPrice">السعر الجديد: YYY.YY جنيه</p>
+                        <p id="detailProductDescription">وصف تفصيلي للمنتج يوضح مميزاته وخاماته، وكيف يمكن استخدامه. هذا الوصف يساعد العميل على اتخاذ قرار الشراء.</p>
+                        <ul class="list-unstyled">
+                            <li><strong>الوزن:</strong> <span id="detailProductWeight">200 جرام</span></li>
+                            <li><strong>المقاسات المتاحة:</strong> <span id="detailProductSizes">S, M, L, XL</span></li>
+                        </ul>
+                        <button class="btn btn-success mt-3" id="orderNowBtn">اطلب الآن</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="customerInfoModal" tabindex="-1" aria-labelledby="customerInfoModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customerInfoModalLabel">بيانات العميل</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center old-price" id="customerOldPrice">السعر القديم: <del>XXX.XX</del> جنيه</p>
+                    <p class="text-center new-price" id="customerNewPrice">السعر الجديد: YYY.YY جنيه</p>
+                    <form id="customerInfoForm">
+                        <div class="mb-3">
+                            <label for="customerName" class="form-label">الاسم بالكامل</label>
+                            <input type="text" class="form-control" id="customerName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customerAddress" class="form-label">العنوان</label>
+                            <input type="text" class="form-control" id="customerAddress" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customerPhone" class="form-label">رقم الموبايل</label>
+                            <input type="tel" class="form-control" id="customerPhone" pattern="[0-9]{10,15}" title="يرجى إدخال رقم موبايل صحيح" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">التالي للدفع</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">إتمام الدفع</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center old-price" id="paymentOldPrice">السعر القديم: <del>XXX.XX</del> جنيه</p>
+                    <p class="text-center new-price" id="paymentNewPrice">السعر الجديد: YYY.YY جنيه</p>
+                    <form id="paymentForm">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">الاسم بالكامل</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">رقم البطاقة</label>
+                            <input type="text" class="form-control" id="cardNumber" pattern="[0-9\s]{16,19}" title="يرجى إدخال رقم بطاقة صحيح (16 رقم)" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="expiryDate" class="form-label">تاريخ الانتهاء (MM/YY)</label>
+                                <input type="text" class="form-control" id="expiryDate" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" placeholder="مثال: 12/25" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cvv" class="form-label">CVV</label>
+                                <input type="text" class="form-control" id="cvv" pattern="[0-9]{3,4}" title="يرجى إدخال 3 أو 4 أرقام" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">إتمام الدفع</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="loadingModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                        <span class="visually-hidden">جاري التحميل...</span>
+                    </div>
+                    <p class="mt-3">جاري إتمام الدفع...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="thankYouModalLabel">شكراً لطلبك!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="old-price" id="thankYouOldPrice">السعر القديم: <del>XXX.XX</del> جنيه</p>
+                    <p class="new-price" id="thankYouNewPrice">السعر الجديد: YYY.YY جنيه</p>
+                    <img src="images/thank-you-image.png" class="img-fluid mb-3" alt="شكراً">
+                    <h4 class="mb-3">شكراً لطلبك من متجرنا!</h4>
+                    <p>احتفظ برقم طلبك:</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control text-center" id="orderNumber" value="ORD-123456789" readonly aria-label="رقم الطلب">
+                        <button class="btn btn-outline-secondary" type="button" id="copyOrderNumberBtn">نسخ</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="backToHomeBtn">العودة للصفحة الرئيسية</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        &copy; 2025 الكوثر. All rights reserved.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

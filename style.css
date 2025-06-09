@@ -1,0 +1,544 @@
+/* SHADOWHACKER-GOD: Code Engineering - Hyper-Optimized CSS */
+
+/* General Styles & Variables */
+:root {
+    /* Light Mode Variables - Base Palette */
+    --light-bg: #f8f9fa;
+    --light-text: #333;
+    --light-header-bg: #ffffff;
+    --light-card-bg: #ffffff;
+    --light-card-border: #eee;
+    --primary-brand-color: #007bff; /* A vibrant blue */
+    --secondary-color: #555;
+    --glowing-card-glow: rgba(0, 123, 255, 0.4);
+    --glowing-card-glow-hover: rgba(0, 123, 255, 0.7);
+    --new-price-color: #dc3545; /* Red for emphasis */
+    --star-color: #ffc107; /* Gold for rating stars */
+    --empty-star-color: #ccc; /* Lighter grey for empty stars */
+    --footer-bg: #ffffff; /* Explicit footer background */
+    --footer-text: var(--secondary-color);
+}
+
+body.dark-mode {
+    /* Dark Mode Variables - Transformed Palette */
+    --light-bg: #212529; /* Dark charcoal */
+    --light-text: #e0e0e0; /* Off-white */
+    --light-header-bg: #343a40; /* Darker grey for header */
+    --light-card-bg: #495057; /* Medium grey for cards */
+    --light-card-border: #6c757d;
+    --primary-brand-color: #90CAF9; /* Lighter blue for dark mode brand contrast */
+    --secondary-color: #adb5bd; /* Muted light grey */
+    --glowing-card-glow: rgba(144, 202, 249, 0.4);
+    --glowing-card-glow-hover: rgba(144, 202, 249, 0.7);
+    --new-price-color: #ff6b6b; /* Adjusted red for dark mode visibility */
+    --star-color: #ffc107;
+    --empty-star-color: #777;
+    --footer-bg: #343a40; /* Darker footer background */
+    --footer-text: var(--secondary-color);
+}
+
+/* Base Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    direction: rtl; /* Right-to-left for Arabic */
+    text-align: right; /* Align text content to the right */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1; /* Allows main content to take available space */
+}
+
+/* Custom Navbar */
+.custom-navbar {
+    background-color: var(--light-header-bg) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-navbar .navbar-brand {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: var(--primary-brand-color);
+    transition: color 0.3s ease;
+}
+
+.custom-navbar .d-flex.align-items-center {
+    flex-wrap: nowrap; /* Prevent wrapping in most cases */
+    width: 100%; /* Take full width to manage internal spacing */
+    justify-content: flex-end; /* Align to end by default (right in RTL) */
+}
+
+/* Search Bar Specifics */
+.custom-navbar .search-bar-container {
+    flex-grow: 1; /* Allows it to expand */
+    max-width: 500px;
+    margin: 0 15px; /* Adjust spacing around search bar */
+}
+
+.custom-navbar .search-input {
+    border-radius: 20px;
+    padding-left: 15px; /* Adjust padding for RTL */
+    padding-right: 15px;
+    background-color: var(--light-card-bg);
+    border-color: var(--light-card-border);
+    color: var(--light-text);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-navbar .search-input::placeholder {
+    color: var(--secondary-color);
+}
+
+.custom-navbar .search-button {
+    border-radius: 20px;
+    margin-left: -40px; /* Overlap button with input for compact look */
+    z-index: 1; /* Ensure button is above input */
+    background-color: var(--primary-brand-color);
+    border-color: var(--primary-brand-color);
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-navbar .search-button:hover {
+    background-color: #0056b3; /* Darken primary */
+    border-color: #0056b3;
+}
+body.dark-mode .custom-navbar .search-button {
+    background-color: #4CAF50; /* Green for dark mode search */
+    border-color: #4CAF50;
+}
+body.dark-mode .custom-navbar .search-button:hover {
+    background-color: #388E3C;
+    border-color: #388E3C;
+}
+
+/* Action Buttons (Dark Mode Toggle & Cart) */
+.custom-navbar .btn-dark-mode,
+.custom-navbar .btn-cart {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    transition: color 0.0s ease;
+    flex-shrink: 0; /* Prevent shrinking */
+    padding: 0.5rem; /* Ensure consistent click area */
+}
+
+.custom-navbar .btn-dark-mode:hover,
+.custom-navbar .btn-cart:hover {
+    color: var(--primary-brand-color);
+}
+
+/* RTL Specific Adjustments */
+.custom-navbar .ms-2 {
+    margin-left: 0.5rem !important; /* Margin-start in RTL is margin-left */
+    margin-right: unset !important;
+}
+.custom-navbar .me-md-auto {
+    margin-right: auto !important; /* Margin-end auto in RTL is margin-right auto */
+    margin-left: unset !important;
+}
+
+/* Hero Slider */
+.hero-slider .carousel-item img {
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.hero-slider .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+/* Product Cards */
+.product-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    background-color: var(--light-card-bg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    color: var(--light-text);
+    display: flex; /* Flexbox for consistent card layout */
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* Glowing Effect (for JS-driven attention) */
+.product-card.glowing-card {
+    box-shadow: 0 0 15px var(--glowing-card-glow);
+}
+
+.product-card.glowing-card:hover {
+    box-shadow: 0 0 25px var(--glowing-card-glow-hover);
+}
+
+body.dark-mode .product-card {
+    background-color: var(--light-card-bg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.product-card img {
+    height: 250px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.product-card .card-body {
+    padding: 15px;
+    text-align: center;
+    flex-grow: 1; /* Allow body to take remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute content */
+}
+
+.product-card .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--light-text);
+}
+
+.product-card .old-price {
+    color: var(--secondary-color);
+    text-decoration: line-through;
+    font-size: 0.95rem;
+}
+
+.product-card .new-price {
+    color: var(--new-price-color);
+    font-weight: bold;
+    font-size: 1.15rem;
+    margin-bottom: 15px;
+}
+
+.product-details-btn {
+    background-color: var(--primary-brand-color);
+    border-color: var(--primary-brand-color);
+    width: 100%;
+    margin-top: auto; /* Push button to the bottom */
+}
+
+.product-details-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+body.dark-mode .product-details-btn {
+    background-color: var(--primary-brand-color);
+    border-color: var(--primary-brand-color);
+}
+body.dark-mode .product-details-btn:hover {
+    background-color: #66b2ff;
+    border-color: #66b2ff;
+}
+
+/* Titles for Sections */
+.products-heading,
+.testimonials-heading {
+    color: var(--primary-brand-color);
+    font-weight: bold;
+    margin-bottom: 3rem;
+    font-size: 2.5rem; /* Ensure consistent large size */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+body.dark-mode .products-heading,
+body.dark-mode .testimonials-heading {
+    color: var(--primary-brand-color); /* Maintain brand color in dark mode */
+}
+
+
+/* Modal Overrides */
+.modal-content {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background-color: var(--light-card-bg);
+    color: var(--light-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--light-card-border);
+    background-color: var(--light-header-bg);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.modal-header .btn-close {
+    filter: invert(var(--light-mode-filter, 0));
+}
+body.dark-mode .modal-header .btn-close {
+    filter: invert(1);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--light-card-border);
+    transition: border-color 0.3s ease;
+}
+
+.modal-body .product-detail-image {
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Form Controls in Modals */
+.form-control {
+    background-color: var(--light-bg);
+    border-color: var(--light-card-border);
+    color: var(--light-text);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.form-control::placeholder {
+    color: var(--secondary-color);
+}
+.form-control:focus {
+    border-color: var(--primary-brand-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+body.dark-mode .form-control {
+    background-color: #3a3a3a;
+    border-color: #555;
+    color: #e0e0e0;
+}
+body.dark-mode .form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(144, 202, 249, 0.25);
+}
+
+
+/* Loading Spinner */
+.spinner-border {
+    animation: spinner-border .75s linear infinite;
+    color: var(--primary-brand-color) !important;
+}
+
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+
+/* Thank You Modal */
+#thankYouModal img {
+    max-width: 150px;
+}
+
+#orderNumber {
+    font-weight: bold;
+    color: var(--primary-brand-color);
+    background-color: var(--light-bg);
+    border: 1px solid var(--light-card-border);
+    border-radius: 5px;
+    padding: .375rem .75rem;
+    display: inline-block;
+    width: auto;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode #orderNumber {
+    background-color: #555;
+    border: 1px solid #666;
+    color: var(--primary-brand-color);
+}
+
+
+#copyOrderNumberBtn {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+#copyOrderNumberBtn:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* WhatsApp Float Button */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    left: 40px; /* Set to left for RTL layout */
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #1DA851;
+}
+
+/* Star Rating for Products */
+.product-rating-stars {
+    color: var(--star-color);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    direction: ltr; /* Force LTR for stars to align left to right */
+    display: inline-block;
+}
+.product-rating-stars .far.fa-star {
+    color: var(--empty-star-color);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    background-color: var(--light-header-bg);
+    padding: 60px 0;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+body.dark-mode .testimonials-section {
+    background-color: var(--light-card-bg);
+}
+
+.testimonial-card {
+    background-color: var(--light-card-bg);
+    border: 1px solid var(--light-card-border);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+body.dark-mode .testimonial-card {
+    background-color: #3a3a3a;
+    border-color: #555;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+.testimonial-text {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: var(--light-text);
+}
+.testimonial-author {
+    font-weight: bold;
+    color: var(--primary-brand-color);
+    font-size: 1.05rem;
+}
+
+
+/* Footer Styling - Refined for Responsiveness */
+footer {
+    margin-top: 50px;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    color: var(--footer-text);
+    text-align: center;
+    background-color: var(--footer-bg); /* Use specific footer background variable */
+    border-top: 1px solid var(--light-card-border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    flex-shrink: 0; /* Prevent footer from shrinking */
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Include padding/border in element's total width/height */
+    /* Potential "large line" fix: Ensure no excessive padding/margin/border here */
+    border-bottom: none !important; /* Explicitly remove any potential bottom border */
+    box-shadow: none !important; /* Explicitly remove any potential box-shadow */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .custom-navbar .search-bar-container {
+        margin: 0 5px;
+    }
+    .hero-slider .carousel-item img {
+        height: 300px;
+    }
+    .product-card img {
+        height: 200px;
+    }
+    /* Swiper navigation arrows are hidden in HTML, so no CSS needed here. */
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        left: 20px;
+        font-size: 25px;
+    }
+    .modal-body .product-detail-image {
+        max-height: 250px; /* Adjust for smaller screens */
+    }
+    .modal-dialog.modal-lg {
+        max-width: 95%; /* Adjust large modal for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-navbar .navbar-brand {
+        font-size: 1.5rem;
+    }
+    /* Center search bar on very small screens for better usability */
+    .custom-navbar .d-flex.align-items-center.order-md-2.order-1 {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center horizontally */
+    }
+    .custom-navbar .search-bar-container {
+        width: 90%; /* Take more width */
+        margin: 10px 0; /* Add vertical margin */
+        order: 3; /* Move search bar to the bottom of the navbar flex items */
+    }
+    .custom-navbar .btn-dark-mode,
+    .custom-navbar .btn-cart {
+        font-size: 1.2rem;
+        margin: 5px; /* Add some space around buttons */
+    }
+    .custom-navbar .search-button {
+        margin-left: -35px; /* Adjust for smaller input */
+    }
+    .hero-slider .carousel-item img {
+        height: 200px; /* Even smaller hero on tiny screens */
+    }
+    .product-card .card-title {
+        font-size: 1.1rem;
+    }
+    .product-card .new-price {
+        font-size: 1rem;
+    }
+    .testimonial-card {
+        padding: 1.5rem;
+        min-height: 200px;
+    }
+    .testimonial-text {
+        font-size: 1rem;
+    }
+
+    .products-heading,
+    .testimonials-heading {
+        font-size: 2rem; /* Reduce heading size on small screens */
+        margin-bottom: 2rem; /* Reduce margin */
+    }
+}
+
+/* Keyframe for subtle pulse effect on stock status */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.03); opacity: 0.9; }
+}
