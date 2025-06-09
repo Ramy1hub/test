@@ -1,4 +1,4 @@
-/* SHADOWHACKER-GOD: Code Engineering - Hyper-Optimized CSS */
+
 
 /* General Styles & Variables */
 :root {
@@ -59,6 +59,9 @@ main {
     background-color: var(--light-header-bg) !important;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    padding-top: -10px; /* قلل المسافة الداخلية العلوية */
+    padding-bottom: -10px; /* قلل المسافة الداخلية السفلية */
+    /* أو ممكن تستخدم اختصار لكتابة البادينج: padding: 5px 20px; (فوق/تحت 5 بكسل، يمين/شمال 20 بكسل) */
 }
 
 .custom-navbar .navbar-brand {
@@ -175,7 +178,9 @@ body.dark-mode .custom-navbar .search-button:hover {
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.4), /* توهج أزرق فاتح */
+                0 0 20px rgba(0, 123, 255, 0.2);
+    z-index: 10;
 }
 
 /* Glowing Effect (for JS-driven attention) */
@@ -541,4 +546,106 @@ footer {
 @keyframes pulse {
     0% { transform: scale(1); opacity: 1; }
     100% { transform: scale(1.03); opacity: 0.9; }
+}
+
+/*
+  هذا الجزء يمثل التعديلات المقترحة للـ CSS.
+  أضفه إلى ملف style.css الخاص بك، أو داخل <style> tag في ملف HTML.
+*/
+
+/* --- تقليل حجم Navbar للجوال --- */
+/*
+  تأكد أن Navbar الخاص بك يستخدم فئات Bootstrap الصحيحة مثل:
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  الـ `navbar-expand-lg` تعني أنه سيتم توسيع النافبار على الشاشات الكبيرة (lg) وما فوق،
+  وسيتحول إلى زر تبديل (toggler) على الشاشات الأصغر.
+*/
+
+@media (max-width: 991.98px) { /* Small devices (landscape phones, 991.98px and below) */
+    .navbar {
+        min-height: 50px; /* ارتفاع أقل للـ navbar على الجوال */
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem; /* حجم خط أصغر لاسم العلامة التجارية */
+    }
+
+    .navbar-nav .nav-link {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        font-size: 0.9rem; /* حجم خط أصغر لروابط التنقل */
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* --- تأثير التوهج عند التمرير على الكروت --- */
+.product-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* إضافة انتقال سلس للتوهج */
+    border: 1px solid var(--border-color); /* لتحديد حدود واضحة قبل التوهج */
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* رفع الكارد قليلاً عند التمرير */
+    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.4), /* توهج أزرق فاتح */
+                0 0 20px rgba(0, 123, 255, 0.2); /* توهج أوسع وأقل كثافة */
+    z-index: 10; /* لجعل الكارد المتوهج يظهر فوق الآخرين قليلاً */
+}
+
+/* تأثير التوهج للبطاقات ذات المخزون المنخفض (يضاف بواسطة JS) */
+.glowing-card-stock {
+    animation: pulse-glow 1s infinite alternate; /* إضافة animation glow effect */
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 69, 0, 0.4); /* توهج برتقالي خفيف */
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 69, 0, 0.8),
+                    0 0 30px rgba(255, 69, 0, 0.6); /* توهج برتقالي أقوى */
+    }
+}
+
+/* تعديل لون نص السعر الجديد في الوضع الداكن إذا كان هناك متغيرات */
+body.dark-mode .product-card .new-price {
+    color: var(--new-price-color-dark, #28a745); /* يمكن أن يكون أخضر داكن أو أي لون تفضله */
+}
+/* إذا تم تفعيل حساسية السعر بواسطة SHADOWHACKER-GOD، سيتغير اللون إلى #ff4500 */
+
+/* شريط التنقل العلوي */
+nav {
+  background-color: #333; /* لون الخلفية */
+  overflow: hidden; /* إخفاء أي محتوى يفيض */
+}
+
+/* روابط شريط التنقل */
+nav a {
+  float: left; /* جعل العناصر تطفو إلى اليسار */
+  color: #f2f2f2; /* لون النص */
+  text-align: center; /* توسيط النص */
+  padding: 14px 16px; /* مساحة داخلية حول النص */
+  text-decoration: none; /* إزالة الخط السفلي */
+  display: block; /* عرض العناصر ككتل */
+  transition: background-color 0.3s ease; /* إضافة انتقال سلس لتغيير لون الخلفية */
+}
+
+/* تأثير التوهج عند التمرير */
+nav a:hover {
+  background-color: #ddd; /* تغيير لون الخلفية عند التمرير */
+  color: black; /* تغيير لون النص عند التمرير */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* إضافة ظل حول العنصر لإظهار تأثير التوهج */
+}
+
+/* جعل شريط التنقل متجاوبًا */
+@media screen and (max-width: 600px) {
+  nav a {
+    float: none; /* إلغاء الطفو */
+    width: 100%; /* جعل عرض العناصر 100% */
+  }
 }
