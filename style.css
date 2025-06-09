@@ -590,17 +590,24 @@ footer {
     border: 1px solid var(--border-color); /* لتحديد حدود واضحة قبل التوهج */
 }
 
-.product-card:hover {
-    transform: translateY(-5px); /* رفع الكارد قليلاً عند التمرير */
-    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.4), /* توهج أزرق فاتح */
-                0 0 20px rgba(0, 123, 255, 0.2); /* توهج أوسع وأقل كثافة */
-    z-index: 10; /* لجعل الكارد المتوهج يظهر فوق الآخرين قليلاً */
+/* --- تعديل تأثير التوهج في الوضع الداكن --- */
+body.dark-mode .product-card:hover {
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3), /* توهج أبيض خفيف */
+                0 0 20px rgba(255, 255, 255, 0.1), /* توهج أبيض أوسع */
+                0 0 30px rgba(25, 255, 255, 0.1); /* توهج سماوي خفيف لإضافة عمق */
+    /* يمكنك تجربة ألوان أخرى مثل الأصفر الفاتح، الأخضر النيون، أو البنفسجي الفاتح */
+    /*
+    box-shadow: 0 8px 16px rgba(255, 255, 0, 0.4),  // مثال: توهج أصفر
+                0 0 20px rgba(255, 255, 0, 0.2);
+    */
 }
 
-/* تأثير التوهج للبطاقات ذات المخزون المنخفض (يضاف بواسطة JS) */
-.glowing-card-stock {
-    animation: pulse-glow 1s infinite alternate; /* إضافة animation glow effect */
+
+/* تأكد من أن تأثير التوهج الخاص بالمخزون المنخفض يعمل أيضاً في الوضع الداكن */
+body.dark-mode .glowing-card-stock {
+    animation: pulse-glow-dark-mode 1s infinite alternate;
 }
+
 
 @keyframes pulse-glow {
     0% {
